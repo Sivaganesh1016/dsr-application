@@ -1,0 +1,1848 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>B2B Sales Arrow - DSR Dashboard</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .brand span {
+            font-weight: normal;
+        }
+
+
+        .subtitle {
+            margin-top: 6px;
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            padding: 25px;
+        }
+
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        button {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+
+        .refresh-btn {
+            background: #1f5eff;
+            color: white;
+        }
+
+
+        .new-btn {
+            background: #222;
+            color: white;
+            margin-left: 8px;
+        }
+
+
+        /* =========================
+           SUMMARY CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+
+        .card-title {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+
+        .card-value {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FILTER SECTION
+        ========================= */
+
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+
+        .filter-group label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #555;
+        }
+
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: white;
+        }
+
+
+        .clear-btn {
+            background: #eeeeee;
+            color: #222;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+        }
+
+
+        th {
+            background: #f1f3f5;
+            color: #333;
+            font-size: 13px;
+            padding: 13px 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+
+        td {
+            color: #222 !important;
+            background: #ffffff !important;
+            font-size: 13px;
+            padding: 13px 10px;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+        }
+
+
+        tr:hover td {
+            background: #f8f9fa !important;
+        }
+
+
+        .achievement {
+            font-weight: bold;
+        }
+
+
+        .message {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .filter-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 15px;
+            }
+
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <div class="brand">
+
+        B2B <span>SALES ARROW</span>
+
+    </div>
+
+
+    <div class="subtitle">
+
+        Employee Productivity & Daily Reporting Dashboard
+
+    </div>
+
+</div>
+
+
+
+<div class="container">
+
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="top-bar">
+
+    <div class="title">
+
+        DSR Records
+
+    </div>
+
+
+    <div>
+
+        <button
+            class="refresh-btn"
+            onclick="loadRecords()">
+
+            Refresh
+
+        </button>
+
+
+        <button
+            class="new-btn"
+            onclick="window.location.href='dsr.html'">
+
+            + New DSR
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     SUMMARY CARDS
+========================= -->
+
+<div class="cards">
+
+
+    <div class="card">
+
+        <div class="card-title">
+            TOTAL RECORDS
+        </div>
+
+        <div
+            class="card-value"
+            id="totalRecords">
+
+            0
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-title">
+            EMPLOYEES
+        </div>
+
+        <div
+            class="card-value"
+            id="totalEmployees">
+
+            0
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-title">
+            TOTAL OUTPUT
+        </div>
+
+        <div
+            class="card-value"
+            id="totalOutput">
+
+            0
+
+        </div>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="card-title">
+            AVG ACHIEVEMENT
+        </div>
+
+        <div
+            class="card-value"
+            id="averageAchievement">
+
+            0%
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     FILTERS
+========================= -->
+
+<div class="filters">
+
+
+    <div class="filter-title">
+
+        Filter DSR Records
+
+    </div>
+
+
+    <div class="filter-row">
+
+
+        <!-- EMPLOYEE -->
+
+        <div class="filter-group">
+
+            <label>
+                Employee
+            </label>
+
+            <select
+                id="employeeFilter"
+                onchange="applyFilters()">
+
+                <option value="">
+                    All Employees
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- PROJECT -->
+
+        <div class="filter-group">
+
+            <label>
+                Project
+            </label>
+
+            <select
+                id="projectFilter"
+                onchange="applyFilters()">
+
+                <option value="">
+                    All Projects
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- DATE -->
+
+        <div class="filter-group">
+
+            <label>
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="dateFilter"
+                onchange="applyFilters()">
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="filter-group">
+
+            <label>
+                Search
+            </label>
+
+            <input
+                type="text"
+                id="searchFilter"
+                placeholder="Employee / Project"
+                oninput="applyFilters()">
+
+        </div>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        class="clear-btn"
+        onclick="clearFilters()">
+
+        Clear Filters
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     TABLE
+========================= -->
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+    <th>Date</th>
+
+    <th>Employee</th>
+
+    <th>Project</th>
+
+    <th>Category</th>
+
+    <th>Login</th>
+
+    <th>Logout</th>
+
+    <th>Hours</th>
+
+    <th>Expected</th>
+
+    <th>Output</th>
+
+    <th>Achievement</th>
+
+    <th>Activity / Reason</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="recordsBody">
+
+<tr>
+
+    <td
+        colspan="11"
+        class="message">
+
+        Loading records...
+
+    </td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   GOOGLE APPS SCRIPT URL
+===================================================== */
+
+const googleScriptURL =
+"https://script.google.com/macros/s/AKfycbxIjo1LZM11FK81ChAhFV1C2PejmHIWczzEpJ7zh6v46Fyk7RfxVC92PGdMBa18NGIN/exec";
+
+
+
+/* =====================================================
+   GLOBAL RECORD STORAGE
+===================================================== */
+
+let allRecords = [];
+
+
+
+/* =====================================================
+   LOAD RECORDS
+===================================================== */
+
+function loadRecords() {
+
+
+    const body =
+        document.getElementById(
+            "recordsBody"
+        );
+
+
+    body.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="11"
+                class="message">
+
+                Loading records...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    fetch(
+        googleScriptURL + "?t=" + Date.now()
+    )
+
+    .then(
+        response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Server returned error: " +
+                    response.status
+                );
+
+            }
+
+            return response.json();
+
+        }
+    )
+
+
+    .then(
+        data => {
+
+
+            console.log(
+                "API RESPONSE:",
+                data
+            );
+
+
+            if (!data.success) {
+
+                throw new Error(
+                    data.message ||
+                    "Unable to load records"
+                );
+
+            }
+
+
+
+            /* =========================================
+               CONVERT API RECORDS
+            ========================================= */
+
+            allRecords =
+                (data.records || [])
+                .map(
+                    record => {
+
+                        return {
+
+                            timestamp:
+                                record["Timestamp"]
+                                || "",
+
+
+                            employeeId:
+                                record["Employee ID"]
+                                || "",
+
+
+                            employeeName:
+                                record["Employee Name"]
+                                || "",
+
+
+                            date:
+                                record["Date"]
+                                || "",
+
+
+                            project:
+                                record["Project"]
+                                || "",
+
+
+                            category:
+                                record["Category"]
+                                || "",
+
+
+                            target:
+                                record["Target"]
+                                || "",
+
+
+                            perHour:
+                                record["Per Hour"]
+                                || "",
+
+
+                            loginTime:
+                                record["Login Time"]
+                                || "",
+
+
+                            logoutTime:
+                                record["Logout Time"]
+                                || "",
+
+
+                            workingHours:
+                                record["Working Hours"]
+                                || "",
+
+
+                            expectedOutput:
+                                record["Expected Output"]
+                                || "",
+
+
+                            output:
+                                record["Today's Output"]
+                                || "",
+
+
+                            achievement:
+                                record["Achievement %"]
+                                || "",
+
+
+                            activity:
+                                record["Activity / Reason"]
+                                || ""
+
+                        };
+
+                    }
+                );
+
+
+
+            console.log(
+                "CONVERTED RECORDS:",
+                allRecords
+            );
+
+
+
+            /* =========================================
+               POPULATE DROPDOWNS
+            ========================================= */
+
+            populateFilters();
+
+
+
+            /* =========================================
+               SUMMARY
+            ========================================= */
+
+            updateSummary(
+                allRecords
+            );
+
+
+
+            /* =========================================
+               TABLE
+            ========================================= */
+
+            displayRecords(
+                allRecords
+            );
+
+        }
+    )
+
+
+    .catch(
+        error => {
+
+            console.error(
+                "LOAD ERROR:",
+                error
+            );
+
+
+            body.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="11"
+                        class="message">
+
+                        Unable to load records.<br><br>
+
+                        ${error.message}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   POPULATE EMPLOYEE + PROJECT DROPDOWNS
+===================================================== */
+
+function populateFilters() {
+
+
+    const employeeSelect =
+        document.getElementById(
+            "employeeFilter"
+        );
+
+
+    const projectSelect =
+        document.getElementById(
+            "projectFilter"
+        );
+
+
+
+    /* =========================================
+       RESET DROPDOWNS
+    ========================================= */
+
+    employeeSelect.innerHTML = `
+
+        <option value="">
+            All Employees
+        </option>
+
+    `;
+
+
+    projectSelect.innerHTML = `
+
+        <option value="">
+            All Projects
+        </option>
+
+    `;
+
+
+
+    /* =========================================
+       GET UNIQUE EMPLOYEES
+    ========================================= */
+
+    const employees =
+        [
+            ...new Set(
+
+                allRecords
+
+                    .map(
+                        record =>
+                            record.employeeName
+                    )
+
+                    .filter(
+                        name =>
+                            name &&
+                            String(name).trim() !== ""
+                    )
+
+            )
+        ]
+        .sort();
+
+
+
+    console.log(
+        "EMPLOYEES:",
+        employees
+    );
+
+
+
+    /* =========================================
+       ADD EMPLOYEES
+    ========================================= */
+
+    employees.forEach(
+        employee => {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                employee;
+
+
+            option.textContent =
+                employee;
+
+
+            employeeSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+
+    /* =========================================
+       GET UNIQUE PROJECTS
+    ========================================= */
+
+    const projects =
+        [
+            ...new Set(
+
+                allRecords
+
+                    .map(
+                        record =>
+                            record.project
+                    )
+
+                    .filter(
+                        project =>
+                            project &&
+                            String(project).trim() !== ""
+                    )
+
+            )
+        ]
+        .sort();
+
+
+
+    console.log(
+        "PROJECTS:",
+        projects
+    );
+
+
+
+    /* =========================================
+       ADD PROJECTS
+    ========================================= */
+
+    projects.forEach(
+        project => {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                project;
+
+
+            option.textContent =
+                project;
+
+
+            projectSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   APPLY FILTERS
+===================================================== */
+
+function applyFilters() {
+
+
+    const employee =
+        document.getElementById(
+            "employeeFilter"
+        ).value;
+
+
+    const project =
+        document.getElementById(
+            "projectFilter"
+        ).value;
+
+
+    const selectedDate =
+        document.getElementById(
+            "dateFilter"
+        ).value;
+
+
+    const search =
+        document.getElementById(
+            "searchFilter"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+
+    const filtered =
+        allRecords.filter(
+            record => {
+
+
+                /* EMPLOYEE */
+
+                const employeeMatch =
+
+                    !employee ||
+
+                    record.employeeName ===
+                    employee;
+
+
+
+                /* PROJECT */
+
+                const projectMatch =
+
+                    !project ||
+
+                    record.project ===
+                    project;
+
+
+
+                /* DATE */
+
+                const dateMatch =
+
+                    !selectedDate ||
+
+                    formatDateForFilter(
+                        record.date
+                    ) ===
+                    selectedDate;
+
+
+
+                /* SEARCH */
+
+                const employeeText =
+                    String(
+                        record.employeeName ||
+                        ""
+                    )
+                    .toLowerCase();
+
+
+                const projectText =
+                    String(
+                        record.project ||
+                        ""
+                    )
+                    .toLowerCase();
+
+
+                const activityText =
+                    String(
+                        record.activity ||
+                        ""
+                    )
+                    .toLowerCase();
+
+
+                const searchMatch =
+
+                    !search ||
+
+                    employeeText.includes(
+                        search
+                    ) ||
+
+                    projectText.includes(
+                        search
+                    ) ||
+
+                    activityText.includes(
+                        search
+                    );
+
+
+
+                return (
+
+                    employeeMatch &&
+
+                    projectMatch &&
+
+                    dateMatch &&
+
+                    searchMatch
+
+                );
+
+            }
+        );
+
+
+
+    updateSummary(
+        filtered
+    );
+
+
+    displayRecords(
+        filtered
+    );
+
+}
+
+
+
+/* =====================================================
+   CLEAR FILTERS
+===================================================== */
+
+function clearFilters() {
+
+
+    document.getElementById(
+        "employeeFilter"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectFilter"
+    ).value = "";
+
+
+    document.getElementById(
+        "dateFilter"
+    ).value = "";
+
+
+    document.getElementById(
+        "searchFilter"
+    ).value = "";
+
+
+
+    updateSummary(
+        allRecords
+    );
+
+
+    displayRecords(
+        allRecords
+    );
+
+}
+
+
+
+/* =====================================================
+   UPDATE SUMMARY
+===================================================== */
+
+function updateSummary(
+    records
+) {
+
+
+    document.getElementById(
+        "totalRecords"
+    ).textContent =
+        records.length;
+
+
+
+    const employees =
+        new Set();
+
+
+    let totalOutput = 0;
+
+
+    let achievementTotal = 0;
+
+
+    let achievementCount = 0;
+
+
+
+    records.forEach(
+        record => {
+
+
+            /* EMPLOYEES */
+
+            if (
+                record.employeeName
+            ) {
+
+                employees.add(
+                    String(
+                        record.employeeName
+                    )
+                );
+
+            }
+
+
+
+            /* OUTPUT */
+
+            const output =
+                parseFloat(
+                    record.output
+                );
+
+
+            if (
+                !isNaN(output)
+            ) {
+
+                totalOutput +=
+                    output;
+
+            }
+
+
+
+            /* ACHIEVEMENT */
+
+            const achievement =
+                parseFloat(
+                    record.achievement
+                );
+
+
+            if (
+                !isNaN(
+                    achievement
+                )
+            ) {
+
+                achievementTotal +=
+                    achievement;
+
+
+                achievementCount++;
+
+            }
+
+        }
+    );
+
+
+
+    document.getElementById(
+        "totalEmployees"
+    ).textContent =
+        employees.size;
+
+
+
+    document.getElementById(
+        "totalOutput"
+    ).textContent =
+        totalOutput;
+
+
+
+    let average = 0;
+
+
+
+    if (
+        achievementCount > 0
+    ) {
+
+        average =
+            achievementTotal /
+            achievementCount;
+
+    }
+
+
+
+    /*
+
+       Example:
+
+       0.9852
+       becomes
+       98.52%
+
+    */
+
+    if (
+        average <= 1
+    ) {
+
+        average =
+            average * 100;
+
+    }
+
+
+
+    document.getElementById(
+        "averageAchievement"
+    ).textContent =
+
+        average.toFixed(2)
+        + "%";
+
+}
+
+
+
+/* =====================================================
+   DISPLAY TABLE
+===================================================== */
+
+function displayRecords(
+    records
+) {
+
+
+    const body =
+        document.getElementById(
+            "recordsBody"
+        );
+
+
+
+    if (
+        !records ||
+        records.length === 0
+    ) {
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="11"
+                    class="message">
+
+                    No DSR records found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    body.innerHTML = "";
+
+
+
+    records.forEach(
+        record => {
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${formatDate(
+                        record.date
+                    )}
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.employeeName
+                    )}
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.project
+                    )}
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.category
+                    )}
+                </td>
+
+
+                <td>
+                    ${formatTime(
+                        record.loginTime
+                    )}
+                </td>
+
+
+                <td>
+                    ${formatTime(
+                        record.logoutTime
+                    )}
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.workingHours
+                    )}
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.expectedOutput
+                    )}
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.output
+                    )}
+                </td>
+
+
+                <td
+                    class="achievement">
+
+                    ${formatAchievement(
+                        record.achievement
+                    )}
+
+                </td>
+
+
+                <td>
+                    ${safeValue(
+                        record.activity
+                    )}
+                </td>
+
+            `;
+
+
+            body.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   SAFE VALUE
+===================================================== */
+
+function safeValue(
+    value
+) {
+
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return "-";
+
+    }
+
+
+    return String(
+        value
+    );
+
+}
+
+
+
+/* =====================================================
+   DATE DISPLAY
+===================================================== */
+
+function formatDate(
+    value
+) {
+
+
+    if (!value) {
+
+        return "-";
+
+    }
+
+
+
+    try {
+
+        const date =
+            new Date(
+                value
+            );
+
+
+        if (
+            isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return String(
+                value
+            );
+
+        }
+
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+        return String(
+            value
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   TIME DISPLAY
+===================================================== */
+
+function formatTime(
+    value
+) {
+
+
+    if (!value) {
+
+        return "-";
+
+    }
+
+
+
+    try {
+
+        const date =
+            new Date(
+                value
+            );
+
+
+        if (
+            !isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return date.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+    }
+
+
+    catch (
+        error
+    ) {
+
+    }
+
+
+    return String(
+        value
+    );
+
+}
+
+
+
+/* =====================================================
+   ACHIEVEMENT DISPLAY
+===================================================== */
+
+function formatAchievement(
+    value
+) {
+
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+
+        return "-";
+
+    }
+
+
+
+    let number =
+        parseFloat(
+            value
+        );
+
+
+    if (
+        isNaN(number)
+    ) {
+
+        return String(
+            value
+        );
+
+    }
+
+
+
+    if (
+        number <= 1
+    ) {
+
+        number =
+            number * 100;
+
+    }
+
+
+
+    return number.toFixed(2)
+        + "%";
+
+}
+
+
+
+/* =====================================================
+   DATE FILTER FORMAT
+===================================================== */
+
+function formatDateForFilter(
+    value
+) {
+
+
+    if (!value) {
+
+        return "";
+
+    }
+
+
+
+    const date =
+        new Date(
+            value
+        );
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            date.getDate()
+        )
+        .padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+
+        year +
+        "-" +
+        month +
+        "-" +
+        day
+
+    );
+
+}
+
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+loadRecords();
+
+
+</script>
+
+
+</body>
+
+</html>

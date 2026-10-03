@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>B2B Sales Arrow - DSR Application</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="dsr-page">
+
+
+    <!-- =========================================
+         TOP HEADER
+    ========================================== -->
+
+    <header class="dsr-header">
+
+        <div>
+
+            <div class="dsr-brand">
+                B2B <span>SALES ARROW</span>
+            </div>
+
+            <div class="dsr-brand-line"></div>
+
+            <div class="dsr-title">
+                DAILY DSR APPLICATION
+            </div>
+
+        </div>
+
+
+        <div class="dsr-system-text">
+
+            Employee Productivity
+            <br>
+            & Daily Reporting System
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN CONTAINER
+    ========================================== -->
+
+    <main class="dsr-main">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="dsr-page-heading">
+
+            <div>
+
+                <h1>Daily Status Report</h1>
+
+                <p>
+                    Enter your daily productivity and activity details
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             EMPLOYEE INFORMATION
+        ====================================== -->
+
+        <section class="dsr-card">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>Employee Information</h2>
+
+                    <p>
+                        Employee and reporting date
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Employee Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="employeeName"
+                        readonly
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PROJECT DETAILS
+        ====================================== -->
+
+        <section class="dsr-card">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h2>Project Details</h2>
+
+                    <p>
+                        Select your project and workload category
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Project
+                    </label>
+
+                    <select id="project">
+
+                        <option value="">
+                            Select Project
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select id="category">
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option>
+                            Very Easy
+                        </option>
+
+                        <option>
+                            Easy
+                        </option>
+
+                        <option>
+                            Medium
+                        </option>
+
+                        <option>
+                            Difficult
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Target
+                    </label>
+
+                    <input
+                        type="text"
+                        id="target"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Per Hour
+                    </label>
+
+                    <input
+                        type="text"
+                        id="perHour"
+                        readonly
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             WORKING TIME
+        ====================================== -->
+
+        <section class="dsr-card">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h2>Working Time</h2>
+
+                    <p>
+                        Enter login and logout timings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Login Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="loginTime"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Logout Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="logoutTime"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Working Hours
+                    </label>
+
+                    <input
+                        type="text"
+                        id="workingHours"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Expected Output
+                    </label>
+
+                    <input
+                        type="text"
+                        id="expectedOutput"
+                        readonly
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PRODUCTIVITY
+        ====================================== -->
+
+        <section class="dsr-card">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    04
+                </div>
+
+                <div>
+
+                    <h2>Daily Productivity</h2>
+
+                    <p>
+                        Enter today's completed output
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Today's Output
+                    </label>
+
+                    <input
+                        type="number"
+                        id="output"
+                        placeholder="Enter completed output"
+                        min="0"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Achievement %
+                    </label>
+
+                    <input
+                        type="text"
+                        id="achievement"
+                        readonly
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Activity / Reason
+                </label>
+
+                <textarea
+                    id="activity"
+                    placeholder="Enter activity details or reason..."
+                    rows="4"
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SUBMIT
+        ====================================== -->
+
+<div class="dsr-submit-section">
+
+    <button
+        class="dsr-submit-button"
+        onclick="submitDSR()"
+    >
+
+        SUBMIT DSR
+
+    </button>
+
+
+    <button
+        type="button"
+        class="dsr-submit-button"
+        onclick="window.location.href='records.html'"
+    >
+
+        VIEW DASHBOARD
+
+    </button>
+
+
+    <p id="message"></p>
+
+</div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="dsr-footer">
+
+        B2B SALES ARROW &nbsp; | &nbsp;
+        Internal DSR Management System
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
